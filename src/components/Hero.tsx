@@ -1,7 +1,9 @@
 import { Button } from "./ui/button";
 import { ImageWithFallback } from "./figma/ImageWithFallback";
+import { useTheme } from "./ThemeProvider";
 
 export function Hero() {
+  const { theme, toggleTheme } = useTheme();
   const scrollToSection = (id: string) => {
     const element = document.getElementById(id);
     if (element) {
@@ -40,7 +42,7 @@ export function Hero() {
           <Button
             size="lg"
             variant="outline"
-            className="border-white text-white hover:bg-white/10"
+            className={`border-white hover:bg-white/10 ${theme == 'light' ? '' : 'text-white'}`}
             onClick={() => scrollToSection("contact")}
           >
             Reserve a Table

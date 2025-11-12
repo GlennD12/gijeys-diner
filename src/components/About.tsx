@@ -4,7 +4,7 @@ export function About() {
   const features = [
     {
       icon: Clock,
-      title: "20+ Years",
+      title: "2+ Years",
       description: "Of culinary excellence",
     },
     {
@@ -23,10 +23,10 @@ export function About() {
     <section id="about" className="py-16 lg:py-24 bg-muted/30">
       <div className="container mx-auto px-4 lg:px-8">
         <div className="max-w-3xl mx-auto text-center mb-12 lg:mb-16">
-          <h2 className="mb-4 lg:mb-6">About La Belle Cuisine</h2>
+          <h2 className="mb-4 lg:mb-6">About Gijey's Diner</h2>
           <p className="text-muted-foreground">
-            Founded in 2004, La Belle Cuisine has been serving exquisite dishes
-            that blend traditional French cooking techniques with modern
+            Founded in 2025, Gijey's Diner has been serving exquisite dishes
+            that blend traditional Kapampangan cooking techniques with modern
             innovation. Our passionate team is dedicated to creating
             unforgettable dining experiences using only the finest locally
             sourced ingredients.
