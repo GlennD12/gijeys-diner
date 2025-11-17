@@ -7,7 +7,7 @@ export function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 lg:gap-12 mb-8">
           {/* Brand */}
           <div>
-            <h3 className="mb-4">La Belle Cuisine</h3>
+            <h3 className="mb-4">Gijey's Diner</h3>
             <p className="opacity-90">
               Experience the finest culinary journey where tradition meets
               innovation.
@@ -51,21 +51,21 @@ export function Footer() {
             <h4 className="mb-4">Follow Us</h4>
             <div className="flex gap-4">
               <a
-                href="#"
+                href="http://localhost/paceseam/secured/dashboard/dashboard.seam?cid=4"
                 className="w-10 h-10 rounded-full bg-white/10 hover:bg-white/20 flex items-center justify-center transition-colors"
                 aria-label="Facebook"
               >
                 <Facebook size={20} />
               </a>
               <a
-                href="#"
+                href="http://localhost/paceseam/secured/dashboard/dashboard.seam?cid=4"
                 className="w-10 h-10 rounded-full bg-white/10 hover:bg-white/20 flex items-center justify-center transition-colors"
                 aria-label="Instagram"
               >
                 <Instagram size={20} />
               </a>
               <a
-                href="#"
+                href="http://localhost/paceseam/secured/dashboard/dashboard.seam?cid=4"
                 className="w-10 h-10 rounded-full bg-white/10 hover:bg-white/20 flex items-center justify-center transition-colors"
                 aria-label="Twitter"
               >

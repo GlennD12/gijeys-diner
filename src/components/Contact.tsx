@@ -7,7 +7,6 @@ import { Card, CardContent } from "./ui/card";
 export function Contact() {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    // Handle form submission
     alert("Thank you for your reservation request! We'll contact you shortly.");
   };
 
@@ -15,22 +14,22 @@ export function Contact() {
     {
       icon: MapPin,
       title: "Address",
-      info: "123 Gourmet Street, Culinary District, NYC 10001",
+      info: "Brgy. Tabun , Mabalacat City, Pampanga, Philippines",
     },
     {
       icon: Phone,
       title: "Phone",
-      info: "+1 (555) 123-4567",
+      info: "09489423043",
     },
     {
       icon: Mail,
       title: "Email",
-      info: "info@labellecuisine.com",
+      info: "gijeys@gmail.com",
     },
     {
       icon: Clock,
       title: "Hours",
-      info: "Tue-Sun: 5:00 PM - 11:00 PM",
+      info: "Mon-Sat: 9:00 AM - 11:00 PM",
     },
   ];
 
