@@ -1,3 +1,5 @@
+import { useState } from "react";
+import emailjs from "emailjs-com";
 import { MapPin, Phone, Mail, Clock } from "lucide-react";
 import { Button } from "./ui/button";
 import { Input } from "./ui/input";
@@ -5,9 +7,72 @@ import { Textarea } from "./ui/textarea";
 import { Card, CardContent } from "./ui/card";
 
 export function Contact() {
-  const handleSubmit = (e: React.FormEvent) => {
+  const emailJsUserId = import.meta.env.VITE_EMAILJS_USER_ID || '';
+  const emailJsServiceId = import.meta.env.VITE_EMAILJS_SERVICE_ID || '';
+  const emailJsTemplateId = import.meta.env.VITE_EMAILJS_TEMPLATE_ID || '';
+
+  console.log("EmailJS User ID:", emailJsUserId);
+  console.log("EmailJS Service ID:", emailJsServiceId);
+  console.log("EmailJS Template ID:", emailJsTemplateId);
+
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    date: '',
+    time: '',
+    num_of_guests: '',
+    special_requests: ''
+  });
+
+  const handleChange = (e: React.FormEvent) => {
+    const { name, value } = e.target as HTMLInputElement;
+    setFormData((prevData) => ({
+      ...prevData,
+      [name]: value,
+    }));
+  };
+
+  emailjs.init(emailJsUserId);
+
+  // Handle form submission
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    alert("Thank you for your reservation request! We'll contact you shortly.");
+
+    // Prepare email data for EmailJS
+    const templateParams = {
+      name: formData.name,
+      email: formData.email,
+      date: formData.date,
+      time: formData.time,
+      num_of_guests: formData.num_of_guests,
+      special_requests: formData.special_requests
+    };
+
+    try {
+      // Send the email using EmailJS
+      const response = await emailjs.send(
+        emailJsServiceId,   // Replace with your EmailJS service ID
+        emailJsTemplateId,   // Replace with your EmailJS template ID
+        templateParams,
+        emailJsUserId        // Replace with your EmailJS user ID
+      );
+
+      console.log('Email sent successfully:', response);
+      alert('Reservation submitted successfully!');
+
+      // Reset form
+      setFormData({
+        name: '',
+        email: '',
+        date: '',
+        time: '',
+        num_of_guests: '',
+        special_requests: ''
+      });
+    } catch (error) {
+      console.error('Error sending email:', error);
+      alert('There was an error submitting your reservation.');
+    }
   };
 
   const contactInfo = [
@@ -73,7 +138,14 @@ export function Contact() {
                     <label htmlFor="name" className="block mb-2">
                       Name
                     </label>
-                    <Input id="name" placeholder="John Doe" required />
+                    <Input
+                      id="name"
+                      name="name"
+                      placeholder="John Doe"
+                      value={formData.name}
+                      onChange={handleChange}
+                      required
+                    />
                   </div>
                   <div>
                     <label htmlFor="email" className="block mb-2">
@@ -82,7 +154,10 @@ export function Contact() {
                     <Input
                       id="email"
                       type="email"
+                      name="email"
                       placeholder="john@example.com"
+                      value={formData.email}
+                      onChange={handleChange}
                       required
                     />
                   </div>
@@ -92,13 +167,27 @@ export function Contact() {
                     <label htmlFor="date" className="block mb-2">
                       Date
                     </label>
-                    <Input id="date" type="date" required />
+                    <Input
+                      id="date"
+                      type="date"
+                      name="date"
+                      value={formData.date}
+                      onChange={handleChange}
+                      required
+                    />
                   </div>
                   <div>
                     <label htmlFor="time" className="block mb-2">
                       Time
                     </label>
-                    <Input id="time" type="time" required />
+                    <Input
+                      id="time"
+                      type="time"
+                      name="time"
+                      value={formData.time}
+                      onChange={handleChange}
+                      required
+                    />
                   </div>
                 </div>
                 <div>
@@ -108,18 +197,24 @@ export function Contact() {
                   <Input
                     id="guests"
                     type="number"
+                    name="num_of_guests"
                     min="1"
                     max="20"
                     placeholder="2"
+                    value={formData.num_of_guests}
+                    onChange={handleChange}
                     required
                   />
                 </div>
                 <div>
-                  <label htmlFor="message" className="block mb-2">
+                  <label htmlFor="special_requests" className="block mb-2">
                     Special Requests
                   </label>
                   <Textarea
-                    id="message"
+                    id="special_requests"
+                    name="special_requests"
+                    value={formData.special_requests}
+                    onChange={handleChange}
                     placeholder="Any dietary restrictions or special occasions?"
                     rows={4}
                   />
